@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Blighted to Bountiful
+	</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<!-- Leaflet CSS -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+		integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+		crossorigin="" />
+	<!-- Fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,800;1,800&display=swap"
+		rel="stylesheet">
+	<style>
+		body {
+			background: #20282e;
+			font-family: 'Open Sans', sans-serif;
+			font-weight: 400;
+		}
+
+		h1 {
+			font-weight: 800;
+		}
+
+		p {
+			line-height: 1.7rem;
+		}
+
+		#map {
+			height: 80vh;
+			background: #20282e;
+		}
+
+		#legend {
+			font-size: 1rem;
+			border-radius: 5px;
+			max-width: 200px;
+			font-family: 'Open Sans', sans-serif;
+		}
+
+		#legend span {
+			width: 20px;
+			height: 20px;
+			float: left;
+			margin: 0 10px 4px 0;
+		}
+
+		#legend label {
+			font-size: 0.9rem;
+		}
+
+		#legend label:after {
+			content: '';
+			display: block;
+			clear: both;
+		}
+
+		/* Small devices (landscape phones, 576px and up) */
+		@media (min-width: 576px) {}
+
+		/* Medium devices (tablets, 768px and up) */
+		@media (min-width: 768px) {
+
+			aside {
+				height: 80vh;
+			}
+		}
+
+		/* Large devices (desktops, 992px and up) */
+		@media (min-width: 992px) {}
+
+		/* Extra large devices (large desktops, 1200px and up) */
+		@media (min-width: 1200px) {}
+	</style>
+
+</head>
+
+<body>
+	<div class="container-fluid">
+		<header class="row bg-dark text-white py-3">
+			<div class="col">
+				<h1>Blighted to Bountiful</h1>
+			</div>
+		</header>
+
+		<section class="row">
+			<div class="col-md-8 col-lg-9 col-xl-10 order-md-2 px-0">
+				<div id="map"></div>
+			</div>
+			<aside id="about"
+				class="col-md-4 col-lg-3 col-xl-2 order-md-1 text-white py-2 pl-3 bg-secondary overflow-auto">
+				<section>
+					<h3 class="py-2">Urban Gardens</h3>
+					<p>We don't have to be concerned about it. We just have to let it fall where it will. God gave you
+						this gift of imagination. Use it. These things happen automatically. All you have to do is just
+						let them happen. You can getaway with a lot.</p>
+
+					<p>Don't be bashful drop me a line. Just use the old one inch brush. Nothing's gonna make your
+						husband or wife madder than coming home and having a snow-covered dinner. Let's go up in
+						here, and start having some fun Everyone is going to see things differently - and that's
+						the way it should be.</p>
+
+					<p>Almost everything is going to happen for you automatically - you don't have to spend any time
+						working or worrying. If it's not what you want - stop and change it. Don't just keep going and
+						expect it will get better. Isn't it great to do something you can't fail at? Nice little fluffy
+						clouds laying around in the sky being lazy.</p>
+
+					<p>A happy cloud. Fluff that up. Imagination is the key to painting. You don't have to spend all
+						your time thinking about what you're doing, you just let it happen. By now you should be quite
+						happy about what's happening here.</p>
+
+					<p>If you don't like it - change it. It's your world. Clouds are free. They just float around the
+						sky all day and have fun. You need to have a very firm paint to do this. We can fix anything.
+						Paint anything you want on the canvas. Create your own world.</p>
+
+					<p>All you have to learn here is how to have fun. This is an example of what you can do with just a
+						few things, alittle imagination and a happy dream in your heart. With practice comes confidence.
+						Be brave.</p>
+
+					<p>In life you need colors. If you do too much it's going to lose its effectiveness. All those
+						little son of a guns. We tell people sometimes: we're like drug dealers, come into town and
+						get everybody absolutely addicted to painting. It doesn't take much to get you addicted. If
+						you've been in Alaska less than a year you're a Cheechako.</p>
+
+					<p> <img src="images/young-salad.jpg" alt="plants" title="growing plants" /></p>
+
+				</section>
+			</aside>
+		</section>
+
+		<footer class="row bg-dark text-white py-3">
+			<div class="col">
+				<ul class="list-unstyled">
+					<li>Authored by <a target="_blank" href="https://alexbuck328.github.io/">Alexander Buck</a></li>
+					<li>Map authored June, 2020</li>
+					<li>Data source: <a target="_blank" href="https://norfolkgisdata-orf.opendata.arcgis.com/">Norfolk
+							Open GIS Data</a>
+					</li>
+				</ul>
+			</div>
+		</footer>
+	</div>
+
+	<!-- legend is outside of container-fluid and will be dynamically added to map -->
+	<div class="bg-secondary py-2 px-3 ml-3 mt-3 text-white" id="legend"></div>
+
+	<!-- ui is outside of container-fluid and will be dynamically added to map -->
+	<div class="form-group mr-3 mt-3" id="dropdown-ui">
+		<select class="form-control bg-primary text-white">
+			<option value="6160 Rolfe Ave." selected>6160 Rolfe Ave.</option>
+			<option value="HC01_VC68">Government Workers</option>
+			<option value="HC01_VC69">Self-employed</option>
+			<option value="HC01_VC70">Unpaid Family Worker</option>
+		</select>
+	</div>
+	<!-- end ui control -->
+
+
+	<!-- jQuery first, then Popper.js, then Bootstrap JS, then leaflet, then simple statistics then your JS! -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+	</script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+	</script>
+	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+		integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+		crossorigin=""></script>
+	<script src="https://unpkg.com/simple-statistics@7.0.8/dist/simple-statistics.min.js"></script>
+	<script>
+		// initial Leaflet map options
+		const options = {
+			zoomSnap: .1,
+			zoomControl: false
+		}
+
+		// create Leaflet map and apply options
+		const map = L.map('map', options);
+		new L.control.zoom({
+			position: "bottomright"
+		}).addTo(map)
+
+		// request a basemap tile layer and add to the map
+		L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+			attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+		}).addTo(map);
+
+		// set global variables for map layer,
+		// mapped attribute, and normalizing attribute
+		let attributeValue = "norfolk_parcelSF";
+		// const normValue = "HC01_VC66";
+
+		// create object to hold legend titles
+		const labels = {
+			"norfolk_address": "Address",
+			"HC01_VC68": "Government Workers",
+			"HC01_VC69": "Self-employed",
+			"HC01_VC70": "Unpaid Family Worker"
+		}
+
+		$.getJSON("data/vacantLots.geojson", function (data) {
+			// jQuery method uses AJAX request for the GeoJSON data
+
+			console.log(data)
+
+			console.log(data.features[0].properties.GPIN)
+
+			console.log(data.features[0].properties.LRSN)
+
+			console.log(data.features[0].properties.OBJECTID)
+
+			console.log(data.features[0].properties.TAX_ACCT)
+
+			console.log(data.features[0].properties.norfolk_address)
+
+			console.log(data.features[0].properties.norfolk_landValue)
+
+			console.log(data.features[0].properties.norfolk_owner)
+
+			console.log(data.features[0].properties.norfolk_parcelAC)
+
+			console.log(data.features[0].properties.norfolk_parcelSF)
+
+			//call draw map and send data as parameter
+			drawMap(data)
+		});
+
+		function drawMap(data) {
+			//	console.log(data)
+			// create leaflet datalayer and add to map 
+			const vacantLots = L.geoJson(data, {
+				// style counties with initial default path
+				style: function (feature) {
+					return {
+						color: 'red', //#20282e
+						weight: 2,
+						fillOpacity: 1,
+						fillColor: '#1f78b4'
+					};
+				},
+				// add hover and touch functionality to each layer
+				onEachFeature: function (feature, layer) {
+					// when mousing over a layer
+					layer.on('mouseover', function () {
+						// change the stroke color and bring that element to the front
+						layer.setStyle({
+							color: 'blue'
+						}).bringToFront();
+					});
+					// on mousing off layer
+					layer.on('mouseout', function () {
+						// reset the layer to the original stroke color
+						layer.setStyle({
+							color: 'red' //#20282e
+						});
+					});
+				}
+			}).addTo(map);
+			// fit the map's bounds and zoom level using the counties extent
+			map.fitBounds(vacantLots.getBounds(), {
+				padding: [18, 18] // add padding around counties
+			});
+			// draw the map
+			// Calling a function with a variable as an argument. Does the variable exist?
+			// What data are we trying to pass into this function?
+			updateMap(vacantLots);
+
+			// add UI controls
+			addUi(vacantLots);
+
+			// update the legend with the current data attribute information
+			addLegend();
+
+		}
+
+
+		function updateMap(vacantLots) { //counties
+			// you could log counties to console here 
+			// to verify the leaflet layers object is not accessible
+			// and scoped within this function
+			//	console.log(vacantLots);
+
+			// get the class breaks for the current attribute
+			//	const breaks = getClassBreaks(vacantLots); // counties
+
+			// loop through each county layer to update the color and tooltip info
+			vacantLots.eachLayer(function (layer) {
+
+				const props = layer.feature.properties;
+
+				//	console.log(props)
+
+				//set the fill color of each layer based irs normalized data value
+				layer.setStyle({
+					fillColor: 'red'
+				});
+
+				// assemble string sequence for tooltip
+				let tooltipInfo = `<b>${props["norfolk_owner"]}</b></br>${((props[attributeValue]))} SF`
+
+				// bind a tooltip to layer with county specific info
+				layer.bindTooltip(tooltipInfo, {
+					// sticky property so tooltip follows nouse
+					sticky: true
+				});
+			});
+
+
+			//update legend
+			updateLegend(vacantLots)
+
+
+		}
+
+		// add legend to the map
+		function addLegend() {
+			// create a new leaflet control object and position it top left
+			const legendControl = L.control({
+				position: 'topleft'
+			});
+
+			//when the legend is added to the map
+			legendControl.onAdd = function () {
+				// select a div element with an id attribute of legend
+				const legend = L.DomUtil.get('legend');
+
+				// disable scroll and click/touch on map when on legend
+				L.DomEvent.disableScrollPropagation(legend);
+				L.DomEvent.disableClickPropagation(legend);
+
+				// return the selection to the method
+				return legend;
+			};
+			// add the empty legend div to the map
+			legendControl.addTo(map);
+
+		}
+
+		function updateLegend(vacantLots) {
+			// select the legend, add a title, begin an unordered list and assign to a variable
+			const legend = $('#legend').html(`<h5>${labels[attributeValue]}</h5>`);
+
+
+			// loop through the array of classification break values
+			//	for (let i = 0; i <= breaks.length - 1; i++) {
+			//		let color = getColor(breaks[i][0], breaks);
+			//		legend.append(`<label>
+			//		<span style="background:${color}"></span>
+			//		${(breaks[i][0] * 100).toLocaleString()} &mdash;
+			//		${(breaks[i][1] * 100).toLocaleString()}%</label>`);
+
+			//	}
+
+		}
+
+		function addUi(vacantLots) {
+			// create the slider control
+			var selectControl = L.control({
+				position: "topright"
+			});
+
+			// when control is added
+			selectControl.onAdd = function () {
+				// get the element with the id attribute ui-controls
+				return L.DomUtil.get("dropdown-ui");
+
+			};
+			// add it to the map
+			selectControl.addTo(map);
+
+			$('#dropdown-ui select').change(function () {
+				// code executed here when change event occurs
+				attributeValue = this.value;
+
+				//	console.log(attributeValue)
+
+				updateMap(vacantLots);
+
+			});
+
+			$('select').change(function () {
+				// store reference to currently selected value
+				attributeValue = $(this).val();
+
+				// call updateMap function and pass dataLayer
+				updateMap(vacantLots)
+
+			});
+
+		}
+	</script>
+</body>
+
+</html>
