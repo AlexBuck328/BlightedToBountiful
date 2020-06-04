@@ -210,23 +210,23 @@
 
 			console.log(data)
 
-			console.log(data.features[0].properties.GPIN)
+			// console.log(data.features[0].properties.GPIN)
 
-			console.log(data.features[0].properties.LRSN)
+			// console.log(data.features[0].properties.LRSN)
 
-			console.log(data.features[0].properties.OBJECTID)
+			// console.log(data.features[0].properties.OBJECTID)
 
-			console.log(data.features[0].properties.TAX_ACCT)
+			// console.log(data.features[0].properties.TAX_ACCT)
 
-			console.log(data.features[0].properties.norfolk_address)
+			// console.log(data.features[0].properties.norfolk_address)
 
-			console.log(data.features[0].properties.norfolk_landValue)
+			// console.log(data.features[0].properties.norfolk_landValue)
 
-			console.log(data.features[0].properties.norfolk_owner)
+			// console.log(data.features[0].properties.norfolk_owner)
 
-			console.log(data.features[0].properties.norfolk_parcelAC)
+			// console.log(data.features[0].properties.norfolk_parcelAC)
 
-			console.log(data.features[0].properties.norfolk_parcelSF)
+			// console.log(data.features[0].properties.norfolk_parcelSF)
 
 			//call draw map and send data as parameter
 			drawMap(data)
@@ -247,6 +247,11 @@
 				},
 				// add hover and touch functionality to each layer
 				onEachFeature: function (feature, layer) {
+					// on each feature method
+					console.log(feature)
+					const tooltip = `${feature.properties.GPIN}`
+					layer.bindTooltip(tooltip)
+
 					// when mousing over a layer
 					layer.on('mouseover', function () {
 						// change the stroke color and bring that element to the front
@@ -294,8 +299,9 @@
 			vacantLots.eachLayer(function (layer) {
 
 				const props = layer.feature.properties;
-
-				//	console.log(props)
+				console.log(props)
+				// console.log it!
+				//console.log(props)
 
 				//set the fill color of each layer based irs normalized data value
 				layer.setStyle({
@@ -303,7 +309,7 @@
 				});
 
 				// assemble string sequence for tooltip
-				let tooltipInfo = `<b>${props["norfolk_owner"]}</b></br>${((props[attributeValue]))} SF`
+				let tooltipInfo = `<b>GPIN:</b> ${props.GPIN}`
 
 				// bind a tooltip to layer with county specific info
 				layer.bindTooltip(tooltipInfo, {
