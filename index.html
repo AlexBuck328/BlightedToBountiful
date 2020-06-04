@@ -59,7 +59,7 @@
 			display: block;
 			clear: both;
 		}
-
+		
 		/* Small devices (landscape phones, 576px and up) */
 		@media (min-width: 576px) {}
 
@@ -194,7 +194,7 @@
 
 		// set global variables for map layer,
 		// mapped attribute, and normalizing attribute
-		let attributeValue = "norfolk_parcelSF";
+		let attributeValue = "norfolk__parcelSF";
 		// const normValue = "HC01_VC66";
 
 		// create object to hold legend titles
@@ -209,24 +209,6 @@
 			// jQuery method uses AJAX request for the GeoJSON data
 
 			console.log(data)
-
-			// console.log(data.features[0].properties.GPIN)
-
-			// console.log(data.features[0].properties.LRSN)
-
-			// console.log(data.features[0].properties.OBJECTID)
-
-			// console.log(data.features[0].properties.TAX_ACCT)
-
-			// console.log(data.features[0].properties.norfolk_address)
-
-			// console.log(data.features[0].properties.norfolk_landValue)
-
-			// console.log(data.features[0].properties.norfolk_owner)
-
-			// console.log(data.features[0].properties.norfolk_parcelAC)
-
-			// console.log(data.features[0].properties.norfolk_parcelSF)
 
 			//call draw map and send data as parameter
 			drawMap(data)
@@ -309,7 +291,10 @@
 				});
 
 				// assemble string sequence for tooltip
-				let tooltipInfo = `<b>AC:</b> ${props.norfolk__parcelAC}`
+				let tooltipInfo = `<b>Address:</b> ${props.norfolk__address}<br>
+				<b>Owner:</b> ${props.norfolk__owner}<br>
+				<b>Lot Size (AC):</b> ${props.norfolk__parcelAC} Acres<br>
+				<b>Lot Size (SF):</b> ${props.norfolk__parcelSF.toLocaleString()} Square Feet`
 
 				// bind a tooltip to layer with county specific info
 				layer.bindTooltip(tooltipInfo, {
