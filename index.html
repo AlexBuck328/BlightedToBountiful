@@ -24,11 +24,38 @@
 		}
 
 		h1 {
-			font-weight: 800;
+			font-weight: 650;
+		}
+
+		h2 {
+			font-weight: 250;
 		}
 
 		p {
 			line-height: 1.7rem;
+		}
+
+		.headrow {
+			background-color:rgb(218, 236, 221);
+			color: grey
+		}
+
+		.footrow {
+			background-color: rgb(218, 236, 221);
+			color: grey
+		}
+
+		.about {
+			background-color: rgb(230, 240, 232);
+			color: grey
+		}
+
+		a {
+			color: rgb(201, 121, 121);
+		}
+
+		a:hover {
+			color: rgb(129, 161, 194)
 		}
 
 		#map {
@@ -82,9 +109,10 @@
 
 <body>
 	<div class="container-fluid">
-		<header class="row bg-dark text-white py-3">
+		<header class="headrow row  py-1">
 			<div class="col">
-				<h1>Blighted to Bountiful</h1>
+				<h1>Blighted to Bountiful</h1> 
+				<h2>Potential Urban Gardens of Norfolk</h2>	
 			</div>
 		</header>
 
@@ -93,9 +121,9 @@
 				<div id="map"></div>
 			</div>
 			<aside id="about"
-				class="col-md-4 col-lg-3 col-xl-2 order-md-1 text-white py-2 pl-3 bg-secondary overflow-auto">
+				class="about col-md-4 col-lg-3 col-xl-2 order-md-1 py-2 pl-3  overflow-auto">
 				<section>
-					<h3 class="py-2">Urban Gardens</h3>
+					<h3 class="py-2">The Project</h3>
 					<p>We don't have to be concerned about it. We just have to let it fall where it will. God gave you
 						this gift of imagination. Use it. These things happen automatically. All you have to do is just
 						let them happen. You can getaway with a lot.</p>
@@ -133,7 +161,7 @@
 			</aside>
 		</section>
 
-		<footer class="row bg-dark text-white py-3">
+		<footer class="footrow row py-1">
 			<div class="col">
 				<ul class="list-unstyled">
 					<li>Authored by <a target="_blank" href="https://alexbuck328.github.io/">Alexander Buck</a></li>
@@ -194,7 +222,7 @@
 
 		// set global variables for map layer,
 		// mapped attribute, and normalizing attribute
-		let attributeValue = "Norfolk Vacant Lots";
+		let attributeValue = "norfolk__parcelSF";
 		// const normValue = "HC01_VC66";
 
 		// create object to hold legend titles
@@ -207,26 +235,6 @@
 
 		$.getJSON("data/vacantLots.geojson", function (data) {
 			// jQuery method uses AJAX request for the GeoJSON data
-
-			console.log(data)
-
-			console.log(data.features[0].properties.GPIN)
-
-			console.log(data.features[0].properties.LRSN)
-
-			console.log(data.features[0].properties.OBJECTID)
-
-			console.log(data.features[0].properties.TAX_ACCT)
-
-			console.log(data.features[0].properties.norfolk__address)
-
-			console.log(data.features[0].properties.norfolk__landValue)
-
-			console.log(data.features[0].properties.norfolk__owner)
-
-			console.log(data.features[0].properties.norfolk__parcelAC)
-
-			console.log(data.features[0].properties.norfolk__parcelSF)
 
 			//call draw map and send data as parameter
 			drawMap(data)
@@ -360,6 +368,15 @@
 			//		${(breaks[i][1] * 100).toLocaleString()}%</label>`);
 
 			//	}
+
+			vacantLots.eachLayer(function (layer) {
+
+				const props = layer.feature.properties
+
+				console.log(props)
+
+
+			})
 
 		}
 
