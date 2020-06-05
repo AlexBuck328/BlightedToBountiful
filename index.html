@@ -152,7 +152,7 @@
 	<!-- ui is outside of container-fluid and will be dynamically added to map -->
 	<div class="form-group mr-3 mt-3" id="dropdown-ui">
 		<select class="form-control bg-primary text-white">
-			<option value="6160 Rolfe Ave." selected>6160 Rolfe Ave.</option>
+			<option value="norfolk__address" selected>6160 Rolfe Ave.</option>
 			<option value="HC01_VC68">Government Workers</option>
 			<option value="HC01_VC69">Self-employed</option>
 			<option value="HC01_VC70">Unpaid Family Worker</option>
@@ -199,9 +199,9 @@
 
 		// create object to hold legend titles
 		const labels = {
-			"norfolk_address": "Address",
-			"HC01_VC68": "Government Workers",
-			"HC01_VC69": "Self-employed",
+			"norfolk__address": "Total Area (SF)",
+			"HC01_VC68": "Total Area (AC)",
+			"HC01_VC69": "City Owned",
 			"HC01_VC70": "Unpaid Family Worker"
 		}
 
@@ -218,15 +218,15 @@
 
 			console.log(data.features[0].properties.TAX_ACCT)
 
-			console.log(data.features[0].properties.norfolk_address)
+			console.log(data.features[0].properties.norfolk__address)
 
-			console.log(data.features[0].properties.norfolk_landValue)
+			console.log(data.features[0].properties.norfolk__landValue)
 
-			console.log(data.features[0].properties.norfolk_owner)
+			console.log(data.features[0].properties.norfolk__owner)
 
-			console.log(data.features[0].properties.norfolk_parcelAC)
+			console.log(data.features[0].properties.norfolk__parcelAC)
 
-			console.log(data.features[0].properties.norfolk_parcelSF)
+			console.log(data.features[0].properties.norfolk__parcelSF)
 
 			//call draw map and send data as parameter
 			drawMap(data)
@@ -303,7 +303,10 @@
 				});
 
 				// assemble string sequence for tooltip
-				let tooltipInfo = `<b>${props["norfolk_owner"]}</b></br>${((props[attributeValue]))} SF`
+				let tooltipInfo = `<b>Address:</b> ${props.norfolk__address}<br>
+				<b>Owner:</b> ${props.norfolk__owner}<br>
+				<b>Lot Size (AC):</b> ${props.norfolk__parcelAC} Acres<br>
+				<b>Lot Size (SF):</b> ${props.norfolk__parcelSF.toLocaleString()} Square Feet`
 
 				// bind a tooltip to layer with county specific info
 				layer.bindTooltip(tooltipInfo, {
