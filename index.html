@@ -303,7 +303,7 @@
 			"norfolk_tomatoes": "Tomatoes Yield"
 		}
 
-		$.getJSON("data/vacantLots3.geojson", function (data) {
+		$.getJSON("data/vacantLots.geojson", function (data) {
 			// jQuery method uses AJAX request for the GeoJSON data
 
 			//call draw map and send data as parameter
@@ -345,11 +345,10 @@
 			}).addTo(map);
 			// fit the map's bounds and zoom level using the counties extent
 			map.fitBounds(vacantLots.getBounds(), {
-				padding: [18, 18] // add padding around counties
+				padding: [18, 18] // add padding around lots
 			});
-			// draw the map
-			// Calling a function with a variable as an argument. Does the variable exist?
-			// What data are we trying to pass into this function?
+			
+			// draw the map calling a function with a variable as an argument.
 			updateMap(vacantLots);
 
 			// add UI controls
@@ -361,23 +360,19 @@
 		}
 
 
-		function updateMap(vacantLots) { //counties
-			// you could log counties to console here 
-			// to verify the leaflet layers object is not accessible
-			// and scoped within this function
-			//	console.log(vacantLots);
-
+		function updateMap(vacantLots) { 
+			
 			// get the class breaks for the current attribute
 			const breaks = getClassBreaks(vacantLots); // counties
 
-			// loop through each county layer to update the color and tooltip info
+			// loop through each lot layer to update the color and tooltip info
 			vacantLots.eachLayer(function (layer) {
 
 				const props = layer.feature.properties;
 
 				//	console.log(props)
 
-				//set the fill color of each layer based irs normalized data value
+				//set the fill color of each layer based its normalized data value
 				layer.setStyle({
 					fillColor: getColor(props[attributeValue] / props[normValue], breaks)
 				});
@@ -411,7 +406,7 @@
 
 			// console.log(values)
 
-			// loop through all the counties
+			// loop through all the lots
 			vacantLots.eachLayer(function (layer) {
 				let value = layer.feature.properties[attributeValue] / layer.feature.properties[normValue];
 				values.push(value) // push the normalized value for each layer to the array
@@ -459,7 +454,7 @@
 				position: 'topleft'
 			});
 
-			//when the legend is added to the map
+			// when the legend is added to the map
 			legendControl.onAdd = function () {
 				// select a div element with an id attribute of legend
 				const legend = L.DomUtil.get('legend');
