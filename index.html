@@ -16,37 +16,43 @@
 	<!-- Fonts -->
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,800;1,800&display=swap"
 		rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Poppins:300" rel="stylesheet">
 	<style>
 		body {
 			background: #ffffff;
-			font-family: 'Open Sans', sans-serif;
+			font-family: 'Poppins', Sans-Serif;
+			/* 'Open Sans', sans-serif; */
 			font-weight: 400;
 		}
 
 		h1 {
 			font-weight: 650;
+			Font-Family: 'Abril Fatface', Cursive;
 		}
 
 		h2 {
 			font-weight: 250;
+			Font-Family: 'Abril Fatface', Cursive;
 		}
 
 		p {
 			line-height: 1.7rem;
+			Font-Family: 'Poppins', Sans-Serif;
 		}
 
 		.headrow {
-			background-color: rgb(230, 240, 232, .7);
+			background-color: rgba(190, 219, 196, .7);
 			color: grey
 		}
 
 		.footrow {
-			background-color: rgb(230, 240, 232, .7);
-			color: grey
+			background-color: rgba(190, 219, 196, 0.7);
+			color: grey;
+			Font-Family: 'Poppins', Sans-Serif;
 		}
 
 		.about {
-			background-color: rgb(246, 252, 247, .9);
+			background-color: rgb(230, 240, 232, 1);
 			color: grey
 		}
 
@@ -117,7 +123,7 @@
 		<header class="headrow row py-1">
 			<div class="col">
 				<h1>Blighted to Bountiful</h1>
-				<h2>Potential Urban Gardens of Norfolk</h2>
+				<h2>Potential Urban Gardens of Norfolk, Virginia</h2>
 			</div>
 		</header>
 
@@ -125,39 +131,75 @@
 			<div class="col-md-8 col-lg-9 col-xl-10 order-md-2 px-0">
 				<div id="map"></div>
 			</div>
-			<aside id="about" class="about col-md-4 col-lg-3 col-xl-2 order-md-1 py-2 pl-3 overflow-auto">
+			<aside id="about" class="about col-md-4 col-lg-3 col-xl-2 order-md-1 py-2 pl-3 pr-3 overflow-auto">
 				<section>
 					<h3 class="py-2">The Project</h3>
-					<p>We don't have to be concerned about it. We just have to let it fall where it will. God gave you
-						this gift of imagination. Use it. These things happen automatically. All you have to do is just
-						let them happen. You can getaway with a lot.</p>
+					<p>Norfolk is a vibrant city within Hampton Roads. It is home to the largest naval base in the world
+						as well as Old Dominion University. With a diverse mix of people, Norfolk is an eclectic region
+						that offers something for everyone. Despite its large population, there is a strong sense of
+						community. Its neighborhoods are much like its people, strong and diverse. Cities are constantly
+						evolving, developing and planning for the future. Like other cities, development and growth have
+						resulted in vacant lots scattered throughout the area. These lots are to some an eye sore, and
+						to others they possess immense potential. Development is not the only concern for local
+						residents. People in all areas are struggling with access to affordable, healthy food. Our
+						nation faces a health epidemic. The <a target="blank"
+							href="https://www.cdc.gov/nchs/products/databriefs/db360.htm">CDC reports</a> the prevalence
+						of obesity among adults as 42.4% in 2017-2018. This is partly due to the low-cost and abundance
+						of <a target="blank" href="https://www.publichealth.org/public-awareness/obesity/">unhealthy
+							food</a>
+						options. Often, it is the low-income demographic that suffers most from the negative effects
+						of development and obesity. Unable to afford housing costs in less blighted communities or the
+						price of healthy food options, the less fortunate in our society bears the brunt of these
+						unfortunate consequences. </p>
 
-					<p>Don't be bashful drop me a line. Just use the old one inch brush. Nothing's gonna make your
-						husband or wife madder than coming home and having a snow-covered dinner. Let's go up in
-						here, and start having some fun Everyone is going to see things differently - and that's
-						the way it should be.</p>
+					<p>Norfolk, like many other areas, is grappling with these issues. In 2016, the Norfolk Department
+						of Public Health published the <a target="blank"
+							href="https://www.norfolk.gov/DocumentCenter/View/25298/Norfolk-Community-Health-Status-42816?bidId=">
+							Norfolk Community Health Status Report</a>, outlining important issues the community faces.
+						They state that the 2015 unemployment rate in Norfolk was 5.6% and 20.5% of the total
+						Norfolk population was living in poverty. The study cites obesity rates in Norfolk as of
+						2012 and 2013 having a positive trend downward. Yet, 67.4% of adults are overweight or
+						obese. </p>
 
-					<p>Almost everything is going to happen for you automatically - you don't have to spend any time
-						working or worrying. If it's not what you want - stop and change it. Don't just keep going and
-						expect it will get better. Isn't it great to do something you can't fail at? Nice little fluffy
-						clouds laying around in the sky being lazy.</p>
+					<p>While these figures may be overwhelming, they are not insurmountable. There is a growing trend
+						across the
+						country aimed at these very issues. Converting vacant lots into urban farms in order to provide
+						fresh,
+						affordable, locally grown produce to the community is becoming very popular. It is scalable,
+						from
+						<a target="blank" href="https://cityfarmchicago.org/">City Farm</a> in Chicago, Illinois to
+						<a target="blank" href="https://www.seedleaf.org/">Seedleaf</a> in Lexington, Kentucky, urban
+						farms
+						are changing the cities of all sizes. Norfolk is well positioned to follow suit and make
+						substantial
+						health and development gains, similar to those seen in Lexington and Chicago.</p>
 
-					<p>A happy cloud. Fluff that up. Imagination is the key to painting. You don't have to spend all
-						your time thinking about what you're doing, you just let it happen. By now you should be quite
-						happy about what's happening here.</p>
+					<p>From the city’s website, I was able to locate a <a target="blank"
+							href="https://data.norfolk.gov/Government/Mowing-Schedule-Spring-2020/hm45-fgnf">mowing
+							schedule</a> for vacant lots. Using <a target="blank"
+							href="https://air.norfolk.gov/#/">Norfolk AIR</a>, I was able to search property
+						information for the addresses listed. From there, with the use of <a target="blank"
+							href="https://norfolkgisdata-orf.opendata.arcgis.com/">Norfolk’s Open GIS Data</a>
+						I was able to obtain parcel data. I then joined to the data collected from the mowing
+						schedule and Norfolk AIR to the parcel boundaries using QGIS. Although this list may not
+						be complete and show all city owned vacant lots, it provides a window into the overwhelming
+						potential these parcels possess. </p>
 
-					<p>If you don't like it - change it. It's your world. Clouds are free. They just float around the
-						sky all day and have fun. You need to have a very firm paint to do this. We can fix anything.
-						Paint anything you want on the canvas. Create your own world.</p>
+					<p>From my research I have determined these vacant lots total 861,271 square feet (19.68 acres) and
+						have a total land value of $6,800,200. I propose the city converts these lots into urban farms
+						which will provide healthy, affordable, locally grown produce to the community as well as
+						utilize otherwise empty space. In addition, these farms will require farmers to tend the crops,
+						which will create new jobs. The execution of this may be handled in a couple ways. The city could
+						retain ownership of these lots and instead of paying the costs of upkeep, they could create jobs
+						and employ local citizens to farm, harvest, and sell the produce. Or, the lands could be leased
+						or sold to non-profits to manage. In either scenario, the city will be able to provide healthier
+						food to those who need it, as well as create new revenue streams from the sale of the land or
+						the lease of the land. The newly created jobs also provide new tax revenues. Not only does this
+						provide much needed healthy food to the community it will help to reduce the poverty rate by
+						creating jobs. This is not an end-all-be-all solution, but it is a step in the right direction.
+						A step that the community will benefit from greatly!
+					</p>
 
-					<p>All you have to learn here is how to have fun. This is an example of what you can do with just a
-						few things, alittle imagination and a happy dream in your heart. With practice comes confidence.
-						Be brave.</p>
-
-					<p>In life you need colors. If you do too much it's going to lose its effectiveness. All those
-						little son of a guns. We tell people sometimes: we're like drug dealers, come into town and
-						get everybody absolutely addicted to painting. It doesn't take much to get you addicted. If
-						you've been in Alaska less than a year you're a Cheechako.</p>
 
 					<p> <img src="images/young-salad.jpg" alt="plants" title="growing plants" /></p>
 
@@ -170,7 +212,8 @@
 				<ul class="list-unstyled">
 					<li>Authored by <a target="_blank" href="https://alexbuck328.github.io/">Alexander Buck</a></li>
 					<li>Map authored June, 2020</li>
-					<li>Data source: <a target="_blank" href="https://norfolkgisdata-orf.opendata.arcgis.com/">Norfolk Open GIS Data</a>
+					<li>Data source: <a target="_blank" href="https://norfolkgisdata-orf.opendata.arcgis.com/">Norfolk
+							Open GIS Data</a>
 					</li>
 				</ul>
 			</div>
@@ -187,15 +230,15 @@
 			<option value="norfolk_bellPeppers">Bell Peppers</option>
 			<option value="norfolk_broccoli">Broccoli</option>
 			<option value="norfolk_cantaloupe">Cantaloupe</option>
-			<option value="norfolk_cucumbers" selected>Cucumbers</option>
+			<option value="norfolk_cucumbers">Cucumbers</option>
 			<option value="norfolk_eggplant">Eggplant</option>
 			<option value="norfolk_kale">Kale</option>
 			<option value="norfolk_lettuce">Lettuce</option>
-			<option value="norfolk_onions" selected>Oinions</option>
+			<option value="norfolk_onions">Oinions</option>
 			<option value="norfolk_peas">Peas</option>
 			<option value="norfolk_potatoes">Potatoes</option>
 			<option value="norfolk_raspberries">Raspberries</option>
-			<option value="norfolk_spinach" selected>Spinach</option>
+			<option value="norfolk_spinach">Spinach</option>
 			<option value="norfolk_squash">Squash</option>
 			<option value="norfolk_strawberries">Strawberries</option>
 			<option value="norfolk_tomatoes">Tomatoes</option>
@@ -242,22 +285,22 @@
 
 		// create object to hold legend titles
 		const labels = {
-			"norfolk_beans": "Beans",
-			"norfolk_bellPeppers": "Bell Peppers",
-			"norfolk_broccoli": "Broccoli",
-			"norfolk_cantaloupe": "Cantaloupe",
-			"norfolk_cucumbers": "Cucumbers",
-			"norfolk_eggplant": "Eggplant",
-			"norfolk_kale": "Kale",
-			"norfolk_lettuce": "Lettuce",
-			"norfolk_onions": "Onions",
-			"norfolk_peas": "Peas",
-			"norfolk_potatoes": "Potatoes",
-			"norfolk_raspberries": "Raspberries",
-			"norfolk_spinach": "Spinach",
-			"norfolk_squash": "Squash",
-			"norfolk_strawberries": "Strawberries",
-			"norfolk_tomatoes": "Tomatoes"
+			"norfolk_beans": "Bean Yield",
+			"norfolk_bellPeppers": "Bell Pepper Yield",
+			"norfolk_broccoli": "Broccoli Yield",
+			"norfolk_cantaloupe": "Cantaloupe Yield",
+			"norfolk_cucumbers": "Cucumber Yield",
+			"norfolk_eggplant": "Eggplant Yield",
+			"norfolk_kale": "Kale Yield",
+			"norfolk_lettuce": "Lettuce Yield",
+			"norfolk_onions": "Onions Yield",
+			"norfolk_peas": "Peas Yield",
+			"norfolk_potatoes": "Potatoes Yield",
+			"norfolk_raspberries": "Raspberries Yield",
+			"norfolk_spinach": "Spinach Yield",
+			"norfolk_squash": "Squash Yield",
+			"norfolk_strawberries": "Strawberries Yield",
+			"norfolk_tomatoes": "Tomatoes Yield"
 		}
 
 		$.getJSON("data/vacantLots3.geojson", function (data) {
@@ -353,7 +396,7 @@
 			});
 
 
-			//update legend
+			//update legend  ** BREAKS **
 			updateLegend(vacantLots)
 
 
@@ -432,30 +475,34 @@
 
 		}
 
-		function updateLegend(breaks) {
+		function updateLegend(vacantLots) { // ** BREAKS **
 			// select the legend, add a title, begin an unordered list and assign to a variable
 			const legend = $('#legend').html(`<h5>${labels[attributeValue]}</h5>`);
 
-			console.log(breaks)
 
 
-			// loop through the array of classification break values
-			for (let i = 0; i <= breaks.length - 1; i++) {
-				
+			// console.log(vacantLots)
+
+
+			// loop through the array of classification break values  ** BREAKS **
+			for (let i = 0; i <= vacantLots.length - 1; i++) {
+
 				const props = layer.feature.properties;
 
 				let yield = props[attributeValue] * props[normValue]
 
-				console.log(props)
+				console.log(vacantLots)
+
+				return yield
 
 				legend.append(yield)
 
-         	//    let color = getColor(breaks[i][0], breaks);
-			//	legend.append(`<label>
-	     	//    <span style="background:${color}"></span>
-			//    ${(breaks[i][0]).toLocaleString()} &mdash;
-			//    ${(breaks[i][1]).toLocaleString()}%</label>`);
- 
+				//    let color = getColor(breaks[i][0], breaks);
+				//	legend.append(`<label>
+				//    <span style="background:${color}"></span>
+				//    ${(breaks[i][0]).toLocaleString()} &mdash;
+				//    ${(breaks[i][1]).toLocaleString()}%</label>`);
+
 
 			}
 
