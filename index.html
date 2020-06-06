@@ -18,7 +18,7 @@
 		rel="stylesheet">
 	<style>
 		body {
-			background: #20282e;
+			background: #ffffff;
 			font-family: 'Open Sans', sans-serif;
 			font-weight: 400;
 		}
@@ -36,26 +36,30 @@
 		}
 
 		.headrow {
-			background-color:rgb(218, 236, 221);
+			background-color: rgb(230, 240, 232, .7);
 			color: grey
 		}
 
 		.footrow {
-			background-color: rgb(218, 236, 221);
+			background-color: rgb(230, 240, 232, .7);
 			color: grey
 		}
 
 		.about {
-			background-color: rgb(230, 240, 232);
+			background-color: rgb(246, 252, 247, .9);
 			color: grey
 		}
 
 		a {
-			color: rgb(201, 121, 121);
+			color: rgb(207, 154, 154);
 		}
 
 		a:hover {
-			color: rgb(129, 161, 194)
+			color: rgb(144, 171, 199)
+		}
+
+		.dropDown {
+			background-color: rgb(122, 122, 122);
 		}
 
 		#map {
@@ -68,6 +72,7 @@
 			border-radius: 5px;
 			max-width: 200px;
 			font-family: 'Open Sans', sans-serif;
+			background-color: rgb(122, 122, 122);
 		}
 
 		#legend span {
@@ -109,10 +114,10 @@
 
 <body>
 	<div class="container-fluid">
-		<header class="headrow row  py-1">
+		<header class="headrow row py-1">
 			<div class="col">
-				<h1>Blighted to Bountiful</h1> 
-				<h2>Potential Urban Gardens of Norfolk</h2>	
+				<h1>Blighted to Bountiful</h1>
+				<h2>Potential Urban Gardens of Norfolk</h2>
 			</div>
 		</header>
 
@@ -120,8 +125,7 @@
 			<div class="col-md-8 col-lg-9 col-xl-10 order-md-2 px-0">
 				<div id="map"></div>
 			</div>
-			<aside id="about"
-				class="about col-md-4 col-lg-3 col-xl-2 order-md-1 py-2 pl-3  overflow-auto">
+			<aside id="about" class="about col-md-4 col-lg-3 col-xl-2 order-md-1 py-2 pl-3 overflow-auto">
 				<section>
 					<h3 class="py-2">The Project</h3>
 					<p>We don't have to be concerned about it. We just have to let it fall where it will. God gave you
@@ -166,8 +170,7 @@
 				<ul class="list-unstyled">
 					<li>Authored by <a target="_blank" href="https://alexbuck328.github.io/">Alexander Buck</a></li>
 					<li>Map authored June, 2020</li>
-					<li>Data source: <a target="_blank" href="https://norfolkgisdata-orf.opendata.arcgis.com/">Norfolk
-							Open GIS Data</a>
+					<li>Data source: <a target="_blank" href="https://norfolkgisdata-orf.opendata.arcgis.com/">Norfolk Open GIS Data</a>
 					</li>
 				</ul>
 			</div>
@@ -175,15 +178,27 @@
 	</div>
 
 	<!-- legend is outside of container-fluid and will be dynamically added to map -->
-	<div class="bg-secondary py-2 px-3 ml-3 mt-3 text-white" id="legend"></div>
+	<div class="py-2 px-3 ml-3 mt-3 text-white" id="legend"></div>
 
 	<!-- ui is outside of container-fluid and will be dynamically added to map -->
 	<div class="form-group mr-3 mt-3" id="dropdown-ui">
-		<select class="form-control bg-primary text-white">
-			<option value="norfolk__address" selected>Total Area (SF)</option>
-			<option value="HC01_VC68">Total Area (AC)</option>
-			<option value="HC01_VC69">City Owned</option>
-			<option value="HC01_VC70">Unpaid Family Worker</option>
+		<select class="dropDown form-control  text-white">
+			<option value="norfolk_beans" selected>Beans</option>
+			<option value="norfolk_bellPeppers">Bell Peppers</option>
+			<option value="norfolk_broccoli">Broccoli</option>
+			<option value="norfolk_cantaloupe">Cantaloupe</option>
+			<option value="norfolk_cucumbers" selected>Cucumbers</option>
+			<option value="norfolk_eggplant">Eggplant</option>
+			<option value="norfolk_kale">Kale</option>
+			<option value="norfolk_lettuce">Lettuce</option>
+			<option value="norfolk_onions" selected>Oinions</option>
+			<option value="norfolk_peas">Peas</option>
+			<option value="norfolk_potatoes">Potatoes</option>
+			<option value="norfolk_raspberries">Raspberries</option>
+			<option value="norfolk_spinach" selected>Spinach</option>
+			<option value="norfolk_squash">Squash</option>
+			<option value="norfolk_strawberries">Strawberries</option>
+			<option value="norfolk_tomatoes">Tomatoes</option>
 		</select>
 	</div>
 	<!-- end ui control -->
@@ -222,22 +237,36 @@
 
 		// set global variables for map layer,
 		// mapped attribute, and normalizing attribute
-		let attributeValue = "norfolk__parcelSF";
-		// const normValue = "HC01_VC66";
+		let attributeValue = "norfolk_parcelSF";
+		const normValue = "norfolk_totalSF";
 
 		// create object to hold legend titles
 		const labels = {
-			"norfolk__address": "Total Area (SF)",
-			"HC01_VC68": "Total Area (AC)",
-			"HC01_VC69": "City Owned",
-			"HC01_VC70": "Unpaid Family Worker"
+			"norfolk_beans": "Beans",
+			"norfolk_bellPeppers": "Bell Peppers",
+			"norfolk_broccoli": "Broccoli",
+			"norfolk_cantaloupe": "Cantaloupe",
+			"norfolk_cucumbers": "Cucumbers",
+			"norfolk_eggplant": "Eggplant",
+			"norfolk_kale": "Kale",
+			"norfolk_lettuce": "Lettuce",
+			"norfolk_onions": "Onions",
+			"norfolk_peas": "Peas",
+			"norfolk_potatoes": "Potatoes",
+			"norfolk_raspberries": "Raspberries",
+			"norfolk_spinach": "Spinach",
+			"norfolk_squash": "Squash",
+			"norfolk_strawberries": "Strawberries",
+			"norfolk_tomatoes": "Tomatoes"
 		}
 
-		$.getJSON("data/vacantLots.geojson", function (data) {
+		$.getJSON("data/vacantLots3.geojson", function (data) {
 			// jQuery method uses AJAX request for the GeoJSON data
 
 			//call draw map and send data as parameter
 			drawMap(data)
+
+			console.log(data)
 		});
 
 		function drawMap(data) {
@@ -247,7 +276,7 @@
 				// style counties with initial default path
 				style: function (feature) {
 					return {
-						color: 'red', //#20282e
+						color: '#20282e',
 						weight: 2,
 						fillOpacity: 1,
 						fillColor: '#1f78b4'
@@ -259,14 +288,14 @@
 					layer.on('mouseover', function () {
 						// change the stroke color and bring that element to the front
 						layer.setStyle({
-							color: 'blue'
+							color: '#ff6e00'
 						}).bringToFront();
 					});
 					// on mousing off layer
 					layer.on('mouseout', function () {
 						// reset the layer to the original stroke color
 						layer.setStyle({
-							color: 'red' //#20282e
+							color: '#20282e'
 						});
 					});
 				}
@@ -296,7 +325,7 @@
 			//	console.log(vacantLots);
 
 			// get the class breaks for the current attribute
-			//	const breaks = getClassBreaks(vacantLots); // counties
+			const breaks = getClassBreaks(vacantLots); // counties
 
 			// loop through each county layer to update the color and tooltip info
 			vacantLots.eachLayer(function (layer) {
@@ -307,14 +336,14 @@
 
 				//set the fill color of each layer based irs normalized data value
 				layer.setStyle({
-					fillColor: 'red'
+					fillColor: getColor(props[attributeValue] / props[normValue], breaks)
 				});
 
 				// assemble string sequence for tooltip
-				let tooltipInfo = `<b>Address:</b> ${props.norfolk__address}<br>
-				<b>Owner:</b> ${props.norfolk__owner}<br>
-				<b>Lot Size (AC):</b> ${props.norfolk__parcelAC} Acres<br>
-				<b>Lot Size (SF):</b> ${props.norfolk__parcelSF.toLocaleString()} Square Feet`
+				let tooltipInfo = `<b>Address:</b> ${props.norfolk_address}<br>
+				<b>Owner:</b> ${props.norfolk_owner}<br>
+				<b>Lot Size (AC):</b> ${props.norfolk_parcelAC} Acres<br>
+				<b>Lot Size (SF):</b> ${props.norfolk_parcelSF.toLocaleString()} Square Feet`
 
 				// bind a tooltip to layer with county specific info
 				layer.bindTooltip(tooltipInfo, {
@@ -328,6 +357,55 @@
 			updateLegend(vacantLots)
 
 
+		}
+
+
+		// get class breaks in data
+		function getClassBreaks(vacantLots) {
+			// create an empty array for storing data
+			const values = [];
+
+			// console.log(values)
+
+			// loop through all the counties
+			vacantLots.eachLayer(function (layer) {
+				let value = layer.feature.properties[attributeValue] / layer.feature.properties[normValue];
+				values.push(value) // push the normalized value for each layer to the array
+			});
+			// determine clusters
+			const clusters = ss.ckmeans(values, 5);
+
+			// console.log(clusters)
+
+			// create an array of the lowest value within each cluster
+			const breaks = clusters.map(function (cluster) {
+				return [cluster[0], cluster.pop()];
+			});
+
+			// return array of arrays
+			return breaks;
+
+		}
+
+		// get color of county
+		function getColor(d, breaks) {
+			// function accepts a single normalized value
+			// and uses a series of conditional statements to determine which
+			// color value to return to the function caller
+			//	console.log(breaks)
+
+			if (d <= breaks[0][1]) {
+				return '#ffffcc';
+			} else if (d <= breaks[1][1]) {
+				return '#a1dab4';
+			} else if (d <=
+				breaks[2][1]) {
+				return '#41b6c4';
+			} else if (d <= breaks[3][1]) {
+				return '#2c7fb8'
+			} else if (d <= breaks[4][1]) {
+				return '#253494'
+			}
 		}
 
 		// add legend to the map
@@ -354,29 +432,33 @@
 
 		}
 
-		function updateLegend(vacantLots) {
+		function updateLegend(breaks) {
 			// select the legend, add a title, begin an unordered list and assign to a variable
 			const legend = $('#legend').html(`<h5>${labels[attributeValue]}</h5>`);
 
+			console.log(breaks)
+
 
 			// loop through the array of classification break values
-			//	for (let i = 0; i <= breaks.length - 1; i++) {
-			//		let color = getColor(breaks[i][0], breaks);
-			//		legend.append(`<label>
-			//		<span style="background:${color}"></span>
-			//		${(breaks[i][0] * 100).toLocaleString()} &mdash;
-			//		${(breaks[i][1] * 100).toLocaleString()}%</label>`);
+			for (let i = 0; i <= breaks.length - 1; i++) {
+				
+				const props = layer.feature.properties;
 
-			//	}
-
-			vacantLots.eachLayer(function (layer) {
-
-				const props = layer.feature.properties
+				let yield = props[attributeValue] * props[normValue]
 
 				console.log(props)
 
+				legend.append(yield)
 
-			})
+         	//    let color = getColor(breaks[i][0], breaks);
+			//	legend.append(`<label>
+	     	//    <span style="background:${color}"></span>
+			//    ${(breaks[i][0]).toLocaleString()} &mdash;
+			//    ${(breaks[i][1]).toLocaleString()}%</label>`);
+ 
+
+			}
+
 
 		}
 
@@ -399,7 +481,7 @@
 				// code executed here when change event occurs
 				attributeValue = this.value;
 
-				//	console.log(attributeValue)
+				console.log(attributeValue)
 
 				updateMap(vacantLots);
 
