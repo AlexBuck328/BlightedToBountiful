@@ -128,10 +128,10 @@
 		</header>
 
 		<section class="row">
-			<div class="col-md-8 col-lg-9 col-xl-10 order-md-2 px-0">
+			<div class="col-md-8 col-lg-9 col-xl-9 order-md-2 px-0">
 				<div id="map"></div>
 			</div>
-			<aside id="about" class="about col-md-4 col-lg-3 col-xl-2 order-md-1 py-2 pl-3 pr-3 overflow-auto">
+			<aside id="about" class="about col-md-4 col-lg-3 col-xl-3 order-md-1 py-2 pl-3 pr-3 overflow-auto">
 				<section>
 					<h3 class="py-2">The Project</h3>
 					<p>Norfolk is a vibrant city within Hampton Roads. It is home to the largest naval base in the world
@@ -201,7 +201,7 @@
 					</p>
 
 
-					<p> <img src="images/young-salad.jpg" alt="plants" title="growing plants" /></p>
+					<p> <img src="images/young-salad.jpg" alt="plants" title="growing plants" alight="middle"></p>
 
 				</section>
 			</aside>
@@ -386,7 +386,8 @@
 				let tooltipInfo = `<b>Address:</b> ${props.norfolk_address}<br>
 				<b>Owner:</b> ${props.norfolk_owner}<br>
 				<b>Lot Size (AC):</b> ${props.norfolk_parcelAC} Acres<br>
-				<b>Lot Size (SF):</b> ${props.norfolk_parcelSF.toLocaleString()} Square Feet`
+				<b>Lot Size (SF):</b> ${props.norfolk_parcelSF.toLocaleString()} Square Feet<br>
+				<b>Land Value:</b> $${props.norfolk_landValue.toLocaleString()}`
 
 				// bind a tooltip to layer with county specific info
 				layer.bindTooltip(tooltipInfo, {
