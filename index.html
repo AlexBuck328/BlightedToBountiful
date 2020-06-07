@@ -235,7 +235,7 @@
 			<option value="norfolk_eggplant">Eggplant</option>
 			<option value="norfolk_kale">Kale</option>
 			<option value="norfolk_lettuce">Lettuce</option>
-			<option value="norfolk_onions">Oinions</option>
+			<option value="norfolk_onions">Onions</option>
 			<option value="norfolk_peas">Peas</option>
 			<option value="norfolk_potatoes">Potatoes</option>
 			<option value="norfolk_raspberries">Raspberries</option>
@@ -304,6 +304,9 @@
 			"norfolk_tomatoes": "Tomatoes Yield"
 		}
 
+		const broccoliYield = ".4"
+
+console.log(broccoliYield * normValue)
 
 		$.getJSON("data/vacantLots.geojson", function (data) {
 			// jQuery method uses AJAX request for the GeoJSON data
@@ -384,7 +387,8 @@
 				<b>Owner:</b> ${props.norfolk_owner}<br>
 				<b>Lot Size (AC):</b> ${props.norfolk_parcelAC} Acres<br>
 				<b>Lot Size (SF):</b> ${props.norfolk_parcelSF.toLocaleString()} Square Feet<br>
-				<b>Land Value:</b> $${props.norfolk_landValue.toLocaleString()}`
+				<b>Land Value:</b> $${props.norfolk_landValue.toLocaleString()}<br>
+				<b>${labels[attributeValue]}:</b> ${(props[attributeValue] * props.norfolk_parcelSF).toLocaleString()} lbs`
 
 				// bind a tooltip to layer with county specific info
 				layer.bindTooltip(tooltipInfo, {
@@ -477,22 +481,20 @@
 			// select the legend, add a title, begin an unordered list and assign to a variable
 			const legend = $('#legend').html(`<h5>${labels[attributeValue]}</h5>`);
 
-			console.log(labels)
+		//	console.log(props[attributeValue] * )
 
 
-			// loop through the array of classification break values  ** BREAKS **
-			for (let i = 0; i <= vacantLots.length - 1; i++) {
-				const props = layer.feature.properties;
+			
+			vacantLots.eachLayer(function (layer) {
 
-				const yield = (props[attributeValue] * props[normValue])
+				const props = layer.feature.properties
 
-				console.log(props[attributeValue])
+				let yield = (props[attributeValue] * props.norfolk_totalSF)
 
 				console.log(yield)
 
-				//	return yield
-
 				legend.append(yield)
+			})
 
 				//    let color = getColor(breaks[i][0], breaks);
 				//	legend.append(`<label>
@@ -504,7 +506,7 @@
 			}
 
 
-		}
+		
 
 		function addUi(vacantLots) {
 			// create the slider control
