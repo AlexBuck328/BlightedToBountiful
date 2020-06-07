@@ -294,19 +294,19 @@
 			"norfolk_eggplant": "Eggplant Yield",
 			"norfolk_kale": "Kale Yield",
 			"norfolk_lettuce": "Lettuce Yield",
-			"norfolk_onions": "Onions Yield",
-			"norfolk_peas": "Peas Yield",
-			"norfolk_potatoes": "Potatoes Yield",
-			"norfolk_raspberries": "Raspberries Yield",
+			"norfolk_onions": "Onion Yield",
+			"norfolk_peas": "Pea Yield",
+			"norfolk_potatoes": "Potato Yield",
+			"norfolk_raspberries": "Raspberry Yield",
 			"norfolk_spinach": "Spinach Yield",
 			"norfolk_squash": "Squash Yield",
-			"norfolk_strawberries": "Strawberries Yield",
-			"norfolk_tomatoes": "Tomatoes Yield"
+			"norfolk_strawberries": "Strawberry Yield",
+			"norfolk_tomatoes": "Tomato Yield"
 		}
 
 		const broccoliYield = ".4"
 
-console.log(broccoliYield * normValue)
+		console.log(broccoliYield * normValue)
 
 		$.getJSON("data/vacantLots.geojson", function (data) {
 			// jQuery method uses AJAX request for the GeoJSON data
@@ -481,32 +481,27 @@ console.log(broccoliYield * normValue)
 			// select the legend, add a title, begin an unordered list and assign to a variable
 			const legend = $('#legend').html(`<h5>${labels[attributeValue]}</h5>`);
 
-		//	console.log(props[attributeValue] * )
+			//	console.log(props[attributeValue] * )
 
 
-			
-			vacantLots.eachLayer(function (layer) {
+			 vacantLots.eachLayer(function (layer) {
 
 				const props = layer.feature.properties
 
-				let yield = (props[attributeValue] * props.norfolk_totalSF)
+				let yield = (props[attributeValue] * props.norfolk_totalSF).toLocaleString()
+
+				console.log(normValue)
 
 				console.log(yield)
 
 				legend.append(yield)
 			})
 
-				//    let color = getColor(breaks[i][0], breaks);
-				//	legend.append(`<label>
-				//    <span style="background:${color}"></span>
-				//    ${(breaks[i][0]).toLocaleString()} &mdash;
-				//    ${(breaks[i][1]).toLocaleString()}%</label>`);
+
+		}
 
 
-			}
 
-
-		
 
 		function addUi(vacantLots) {
 			// create the slider control
