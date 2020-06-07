@@ -189,7 +189,8 @@
 						have a total land value of $6,800,200. I propose the city converts these lots into urban farms
 						which will provide healthy, affordable, locally grown produce to the community as well as
 						utilize otherwise empty space. In addition, these farms will require farmers to tend the crops,
-						which will create new jobs. The execution of this may be handled in a couple ways. The city could
+						which will create new jobs. The execution of this may be handled in a couple ways. The city
+						could
 						retain ownership of these lots and instead of paying the costs of upkeep, they could create jobs
 						and employ local citizens to farm, harvest, and sell the produce. Or, the lands could be leased
 						or sold to non-profits to manage. In either scenario, the city will be able to provide healthier
@@ -303,6 +304,7 @@
 			"norfolk_tomatoes": "Tomatoes Yield"
 		}
 
+
 		$.getJSON("data/vacantLots.geojson", function (data) {
 			// jQuery method uses AJAX request for the GeoJSON data
 
@@ -347,7 +349,7 @@
 			map.fitBounds(vacantLots.getBounds(), {
 				padding: [18, 18] // add padding around lots
 			});
-			
+
 			// draw the map calling a function with a variable as an argument.
 			updateMap(vacantLots);
 
@@ -360,8 +362,8 @@
 		}
 
 
-		function updateMap(vacantLots) { 
-			
+		function updateMap(vacantLots) {
+
 			// get the class breaks for the current attribute
 			const breaks = getClassBreaks(vacantLots); // counties
 
@@ -475,21 +477,20 @@
 			// select the legend, add a title, begin an unordered list and assign to a variable
 			const legend = $('#legend').html(`<h5>${labels[attributeValue]}</h5>`);
 
-
-
-			// console.log(vacantLots)
+			console.log(labels)
 
 
 			// loop through the array of classification break values  ** BREAKS **
 			for (let i = 0; i <= vacantLots.length - 1; i++) {
-
 				const props = layer.feature.properties;
 
-				let yield = props[attributeValue] * props[normValue]
+				const yield = (props[attributeValue] * props[normValue])
 
-				console.log(vacantLots)
+				console.log(props[attributeValue])
 
-				return yield
+				console.log(yield)
+
+				//	return yield
 
 				legend.append(yield)
 
