@@ -76,7 +76,7 @@
 		#legend {
 			font-size: 1rem;
 			border-radius: 5px;
-			max-width: 200px;
+			max-width: 250px;
 			font-family: 'Open Sans', sans-serif;
 			background-color: rgb(122, 122, 122);
 		}
@@ -277,8 +277,8 @@
 		}).addTo(map)
 
 		// request a basemap tile layer and add to the map
-		L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-			attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+		L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png', {
+			attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
 		}).addTo(map);
 
 		// set global variables for map layer,
@@ -289,22 +289,22 @@
 
 		// create object to hold legend titles
 		const labels = {
-			"norfolk_beans": "Bean Yield",
-			"norfolk_bellPeppers": "Bell Pepper Yield",
-			"norfolk_broccoli": "Broccoli Yield",
-			"norfolk_cantaloupe": "Cantaloupe Yield",
-			"norfolk_cucumbers": "Cucumber Yield",
-			"norfolk_eggplant": "Eggplant Yield",
-			"norfolk_kale": "Kale Yield",
-			"norfolk_lettuce": "Lettuce Yield",
-			"norfolk_onions": "Onion Yield",
-			"norfolk_peas": "Pea Yield",
-			"norfolk_potatoes": "Potato Yield",
-			"norfolk_raspberries": "Raspberry Yield",
-			"norfolk_spinach": "Spinach Yield",
-			"norfolk_squash": "Squash Yield",
-			"norfolk_strawberries": "Strawberry Yield",
-			"norfolk_tomatoes": "Tomato Yield"
+			"norfolk_beans": "Total Bean Yield",
+			"norfolk_bellPeppers": "Total Bell Pepper Yield",
+			"norfolk_broccoli": "Total Broccoli Yield",
+			"norfolk_cantaloupe": "Total Cantaloupe Yield",
+			"norfolk_cucumbers": "Total Cucumber Yield",
+			"norfolk_eggplant": "Total Eggplant Yield",
+			"norfolk_kale": "Total Kale Yield",
+			"norfolk_lettuce": "Total Lettuce Yield",
+			"norfolk_onions": "Total Onion Yield",
+			"norfolk_peas": "Total Pea Yield",
+			"norfolk_potatoes": "Total Potato Yield",
+			"norfolk_raspberries": "Total Raspberry Yield",
+			"norfolk_spinach": "Total Spinach Yield",
+			"norfolk_squash": "Total Squash Yield",
+			"norfolk_strawberries": "Total Strawberry Yield",
+			"norfolk_tomatoes": "Total Tomato Yield"
 		}
 
         const totalSF = "861271"
@@ -505,7 +505,7 @@
 			//	console.log(props[attributeValue] * )
 
 
-			 let yield = `${(totalYield[attributeValue] * totalSF).toLocaleString()} Total Lbs`
+			 let yield = `${(totalYield[attributeValue] * totalSF).toLocaleString()} Pounds`
 
 				legend.append(yield)
 
