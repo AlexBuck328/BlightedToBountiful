@@ -486,19 +486,21 @@
 
 			//	console.log(props[attributeValue] * )
 
-
+			let yieldWeight = 0
 			 vacantLots.eachLayer(function (layer) {
 
 				const props = layer.feature.properties
 
-				let yieldWeight = (props[attributeValue] * props.norfolk_totalSF).toLocaleString()
+				yieldWeight += (props[attributeValue] * props.norfolk_totalSF)
 
-				console.log(normValue)
+				console.log(attributeValue)
 
 				console.log(yieldWeight)
 
-				legend.append(yieldWeight)
+				
 			})
+
+			legend.append(`${yieldWeight.toLocaleString()} lbs`)
 
 		}
 
