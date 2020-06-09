@@ -228,8 +228,7 @@
 	<div class="form-group mr-3 mt-3" id="dropdown-ui">
 		
 		<select class="dropDown form-control  text-white">	
-			<option>Select A Crop</option>
-			<option value="norfolk_beans" >Beans</option>
+			<option value="norfolk_beans" selected>Beans</option>
 			<option value="norfolk_bellPeppers">Bell Peppers</option>
 			<option value="norfolk_broccoli">Broccoli</option>
 			<option value="norfolk_cantaloupe">Cantaloupe</option>
@@ -287,6 +286,7 @@
 		let attributeValue = "norfolk_parcelSF";
 		const normValue = "norfolk_totalSF";
 
+
 		// create object to hold legend titles
 		const labels = {
 			"norfolk_beans": "Bean Yield",
@@ -307,9 +307,27 @@
 			"norfolk_tomatoes": "Tomato Yield"
 		}
 
-		const broccoliYield = ".4"
+        const totalSF = "861271"
+		const totalYield = {
+			"norfolk_beans": ".5",
+			"norfolk_bellPeppers": "2",
+			"norfolk_broccoli": ".4",
+			"norfolk_cantaloupe": "1.5",
+			"norfolk_cucumbers": "3.5",
+			"norfolk_eggplant": "1.6",
+			"norfolk_kale": ".5",
+			"norfolk_lettuce": "1.5",
+			"norfolk_onions": ".6",
+			"norfolk_peas": ".5",
+			"norfolk_potatoes": "1.5",
+			"norfolk_raspberries": ".4",
+			"norfolk_spinach": ".5",
+			"norfolk_squash": "4.5",
+			"norfolk_strawberries": "4.5",
+			"norfolk_tomatoes": "1.8"
+		}
 
-		console.log(broccoliYield * normValue)
+		//console.log(broccoliYield * totalSF)
 
 		$.getJSON("data/vacantLots.geojson", function (data) {
 			// jQuery method uses AJAX request for the GeoJSON data
@@ -317,7 +335,7 @@
 			//call draw map and send data as parameter
 			drawMap(data)
 
-			console.log(data)
+		//	console.log(data)
 		});
 
 		function drawMap(data) {
@@ -487,18 +505,9 @@
 			//	console.log(props[attributeValue] * )
 
 
-			 vacantLots.eachLayer(function (layer) {
-
-				const props = layer.feature.properties
-
-				let yield = (props[attributeValue] * props.norfolk_totalSF).toLocaleString()
-
-				console.log(normValue)
-
-				console.log(yield)
+			 let yield = `${(totalYield[attributeValue] * totalSF).toLocaleString()} Total Lbs`
 
 				legend.append(yield)
-			})
 
 		}
 
