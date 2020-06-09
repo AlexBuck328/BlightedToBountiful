@@ -491,13 +491,13 @@
 
 				const props = layer.feature.properties
 
-				let yield = (props[attributeValue] * props.norfolk_totalSF).toLocaleString()
+				let yieldWeight = (props[attributeValue] * props.norfolk_totalSF).toLocaleString()
 
 				console.log(normValue)
 
-				console.log(yield)
+				console.log(yieldWeight)
 
-				legend.append(yield)
+				legend.append(yieldWeight)
 			})
 
 		}
@@ -530,14 +530,14 @@
 
 			});
 
-			$('select').change(function () {
-				// store reference to currently selected value
-				attributeValue = $(this).val();
+			// $('select').change(function () {
+			// 	// store reference to currently selected value
+			// 	attributeValue = $(this).val();
 
-				// call updateMap function and pass dataLayer
-				updateMap(vacantLots)
+			// 	// call updateMap function and pass dataLayer
+			// 	updateMap(vacantLots)
 
-			});
+			// });
 
 		}
 	</script>
