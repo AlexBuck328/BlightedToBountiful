@@ -185,8 +185,8 @@
 						be complete and show all city owned vacant lots, it provides a window into the overwhelming
 						potential these parcels possess. </p>
 
-					<p>From my research I have determined these vacant lots total 861,271 square feet (19.68 acres) and
-						have a total land value of $6,800,200. I propose the city converts these lots into urban farms
+					<p>From my research I have determined these vacant lots total 791,620 square feet (18.08 acres) and
+						have a total land value of $6,560,800. I propose the city converts these lots into urban farms
 						which will provide healthy, affordable, locally grown produce to the community as well as
 						utilize otherwise empty space. In addition, these farms will require farmers to tend the crops,
 						which will create new jobs. The execution of this may be handled in a couple ways. The city
@@ -411,7 +411,9 @@
 				<b>Lot Size (SF):</b> ${props.norfolk_parcelSF.toLocaleString()} Square Feet<br>
 				<b>Land Value:</b> $${props.norfolk_landValue.toLocaleString()}<br>
 				<b>${labels[attributeValue]} (Lbs per SF):</b> ${totalYield[attributeValue]} lbs/SF<br>
-				<b>${labels[attributeValue]}:</b> ${(props[attributeValue]).toLocaleString()} lbs`
+				<b>${labels[attributeValue]}:</b> ${(props[attributeValue]).toLocaleString()} lbs<br>
+				<iframe src="https://air.norfolk.gov/allimagery/streetview.html?x=-76.3114205399744&y=36.8988987942398 width="relative" height="relative">
+				</iframe>`
 
 				// bind a tooltip to layer with county specific info
 				layer.bindTooltip(tooltipInfo, {
@@ -504,7 +506,7 @@
 			// select the legend, add a title, begin an unordered list and assign to a variable
 			const legend = $('#legend').html(`<h5>Total ${labels[attributeValue]}</h5>`);
 
-			//	console.log(props[attributeValue] * )
+			//	console.log(attributeValue)
 
 			let yieldWeight = `${(totalYield[attributeValue] * totalSF).toLocaleString()} Pounds`
 
@@ -536,7 +538,7 @@
 				// code executed here when change event occurs
 				attributeValue = this.value;
 
-				console.log(attributeValue)
+			//	console.log(attributeValue)
 
 				updateMap(vacantLots);
 
