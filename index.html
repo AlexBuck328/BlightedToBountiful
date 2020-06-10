@@ -506,9 +506,9 @@
 
 			//	console.log(props[attributeValue] * )
 
-			let yield = `${(totalYield[attributeValue] * totalSF).toLocaleString()} Pounds`
+			let yieldWeight = `${(totalYield[attributeValue] * totalSF).toLocaleString()} Pounds`
 
-			legend.append(yield)
+			legend.append(yieldWeight)
 
 
 
@@ -547,7 +547,7 @@
 				attributeValue = $(this).val();
 
 				// call updateMap function and pass dataLayer
-				updateMap(vacantLots)
+	     		updateMap(vacantLots)
 
 			});
 
