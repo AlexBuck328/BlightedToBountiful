@@ -397,7 +397,7 @@
 
 				const props = layer.feature.properties;
 
-					console.log(props)
+				//	console.log(props)
 
 				//set the fill color of each layer based its normalized data value
 				layer.setStyle({
@@ -410,7 +410,7 @@
 				<b>Lot Size (AC):</b> ${props.norfolk_parcelAC} Acres<br>
 				<b>Lot Size (SF):</b> ${props.norfolk_parcelSF.toLocaleString()} Square Feet<br>
 				<b>Land Value:</b> $${props.norfolk_landValue.toLocaleString()}<br>
-				<b>${labels[attributeValue]} (Lbs per SF):</b> ${props[attributeValue]} lbs/SF<br>
+				<b>${labels[attributeValue]} (Lbs per SF):</b> ${totalYield[attributeValue]} lbs/SF<br>
 				<b>${labels[attributeValue]}:</b> ${(props[attributeValue]).toLocaleString()} lbs`
 
 				// bind a tooltip to layer with county specific info
