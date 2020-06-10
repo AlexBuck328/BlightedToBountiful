@@ -226,8 +226,8 @@
 
 	<!-- ui is outside of container-fluid and will be dynamically added to map -->
 	<div class="form-group mr-3 mt-3" id="dropdown-ui">
-		
-		<select class="dropDown form-control  text-white">	
+
+		<select class="dropDown form-control  text-white">
 			<option value="norfolk_beans" selected>Beans</option>
 			<option value="norfolk_bellPeppers">Bell Peppers</option>
 			<option value="norfolk_broccoli">Broccoli</option>
@@ -246,7 +246,7 @@
 			<option value="norfolk_tomatoes">Tomatoes</option>
 		</select>
 	</div>
-	
+
 	<!-- end ui control -->
 
 
@@ -277,8 +277,9 @@
 		}).addTo(map)
 
 		// request a basemap tile layer and add to the map
-		L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png', {
-			attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+		L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+			attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+			subdomains: 'abcd',
 		}).addTo(map);
 
 		// set global variables for map layer,
@@ -289,25 +290,25 @@
 
 		// create object to hold legend titles
 		const labels = {
-			"norfolk_beans": "Total Bean Yield",
-			"norfolk_bellPeppers": "Total Bell Pepper Yield",
-			"norfolk_broccoli": "Total Broccoli Yield",
-			"norfolk_cantaloupe": "Total Cantaloupe Yield",
-			"norfolk_cucumbers": "Total Cucumber Yield",
-			"norfolk_eggplant": "Total Eggplant Yield",
-			"norfolk_kale": "Total Kale Yield",
-			"norfolk_lettuce": "Total Lettuce Yield",
-			"norfolk_onions": "Total Onion Yield",
-			"norfolk_peas": "Total Pea Yield",
-			"norfolk_potatoes": "Total Potato Yield",
-			"norfolk_raspberries": "Total Raspberry Yield",
-			"norfolk_spinach": "Total Spinach Yield",
-			"norfolk_squash": "Total Squash Yield",
-			"norfolk_strawberries": "Total Strawberry Yield",
-			"norfolk_tomatoes": "Total Tomato Yield"
+			"norfolk_beans": "Bean Yield",
+			"norfolk_bellPeppers": "Bell Pepper Yield",
+			"norfolk_broccoli": "Broccoli Yield",
+			"norfolk_cantaloupe": "Cantaloupe Yield",
+			"norfolk_cucumbers": "Cucumber Yield",
+			"norfolk_eggplant": "Eggplant Yield",
+			"norfolk_kale": "Kale Yield",
+			"norfolk_lettuce": "Lettuce Yield",
+			"norfolk_onions": "Onion Yield",
+			"norfolk_peas": "Pea Yield",
+			"norfolk_potatoes": "Potato Yield",
+			"norfolk_raspberries": "Raspberry Yield",
+			"norfolk_spinach": "Spinach Yield",
+			"norfolk_squash": "Squash Yield",
+			"norfolk_strawberries": "Strawberry Yield",
+			"norfolk_tomatoes": "Tomato Yield"
 		}
 
-        const totalSF = "861271"
+		const totalSF = "861271"
 		const totalYield = {
 			"norfolk_beans": ".5",
 			"norfolk_bellPeppers": "2",
@@ -335,7 +336,7 @@
 			//call draw map and send data as parameter
 			drawMap(data)
 
-		//	console.log(data)
+			//	console.log(data)
 		});
 
 		function drawMap(data) {
@@ -409,6 +410,7 @@
 				<b>Lot Size (AC):</b> ${props.norfolk_parcelAC} Acres<br>
 				<b>Lot Size (SF):</b> ${props.norfolk_parcelSF.toLocaleString()} Square Feet<br>
 				<b>Land Value:</b> $${props.norfolk_landValue.toLocaleString()}<br>
+				<b>${labels[attributeValue]} (Lbs per SF):</b> ${props[attributeValue]} lbs/SF<br>
 				<b>${labels[attributeValue]}:</b> ${(props[attributeValue] * props.norfolk_parcelSF).toLocaleString()} lbs`
 
 				// bind a tooltip to layer with county specific info
@@ -420,7 +422,7 @@
 
 
 			//update legend  ** BREAKS **
-			updateLegend(vacantLots)
+			updateLegend(breaks)
 
 
 		}
@@ -498,16 +500,17 @@
 
 		}
 
-		function updateLegend(vacantLots) { // ** BREAKS **
+		function updateLegend(breaks) { // ** BREAKS **
 			// select the legend, add a title, begin an unordered list and assign to a variable
-			const legend = $('#legend').html(`<h5>${labels[attributeValue]}</h5>`);
+			const legend = $('#legend').html(`<h5>Total ${labels[attributeValue]}</h5>`);
 
 			//	console.log(props[attributeValue] * )
 
+			let yield = `${(totalYield[attributeValue] * totalSF).toLocaleString()} Pounds`
 
-			 let yield = `${(totalYield[attributeValue] * totalSF).toLocaleString()} Pounds`
+			legend.append(yield)
 
-				legend.append(yield)
+
 
 		}
 
