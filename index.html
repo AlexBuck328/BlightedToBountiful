@@ -397,7 +397,9 @@
 
 				const props = layer.feature.properties;
 
-				//	console.log(props)
+					console.log(props)
+
+				//	console.log(props.norfolk_streetView)
 
 				//set the fill color of each layer based its normalized data value
 				layer.setStyle({
@@ -412,7 +414,7 @@
 				<b>Land Value:</b> $${props.norfolk_landValue.toLocaleString()}<br>
 				<b>${labels[attributeValue]} (Lbs per SF):</b> ${totalYield[attributeValue]} lbs/SF<br>
 				<b>${labels[attributeValue]}:</b> ${(props[attributeValue]).toLocaleString()} lbs<br>
-				<iframe src="https://air.norfolk.gov/allimagery/streetview.html?x=-76.3114205399744&y=36.8988987942398 width="relative" height="relative">
+				<iframe src="${props.norfolk_streetView}" width="relative" height="relative">
 				</iframe>`
 
 				// bind a tooltip to layer with county specific info
