@@ -98,6 +98,43 @@
 			clear: both;
 		}
 
+		.legend {
+			padding: 6px 8px;
+			font-size: 1em;
+			border-radius: 5px;
+			max-width: 250px;
+			font-family: 'Open Sans', sans-serif;
+			background-color: rgb(122, 122, 122); 
+		}
+
+		/*.legend {
+			width: 20px;
+			height: 20px;
+			color: rgb(122, 122, 122);
+			float: left; 
+			margin: 0 10px 4px 0;
+		} */
+
+		.legend label {
+			font-size: 0.9rem;
+		}
+
+		.legend label:after {
+			content: '';
+			display: block;
+			clear: both;
+		}
+
+		.legend h3 {
+			font-size: 1rem;
+			font-weight: normal;
+			color: white;
+			margin: 0 0 10px 0;
+		}
+
+
+
+
 		/* Small devices (landscape phones, 576px and up) */
 		@media (min-width: 576px) {}
 
@@ -224,6 +261,8 @@
 	<!-- legend is outside of container-fluid and will be dynamically added to map -->
 	<div class="py-2 px-3 ml-3 mt-3 text-white" id="legend"></div>
 
+	<div class="py-2 px-3 ml-3 mt-3 text-white" id="legend"></div>
+
 	<!-- ui is outside of container-fluid and will be dynamically added to map -->
 	<div class="form-group mr-3 mt-3" id="dropdown-ui">
 
@@ -336,6 +375,8 @@
 			//call draw map and send data as parameter
 			drawMap(data)
 
+			drawZoom()
+
 			//	console.log(data)
 		});
 
@@ -397,7 +438,7 @@
 
 				const props = layer.feature.properties;
 
-					console.log(props)
+				//	console.log(props)
 
 				//	console.log(props.norfolk_streetView)
 
@@ -478,7 +519,7 @@
 			} else if (d <= breaks[4][1]) {
 				return '#253494'
 			}
-		}
+		} // end getColor
 
 		// add legend to the map
 		function addLegend() {
@@ -514,9 +555,7 @@
 
 			legend.append(yieldWeight)
 
-
-
-		}
+		} // end addLegend
 
 
 
@@ -540,7 +579,7 @@
 				// code executed here when change event occurs
 				attributeValue = this.value;
 
-			//	console.log(attributeValue)
+				//	console.log(attributeValue)
 
 				updateMap(vacantLots);
 
@@ -551,9 +590,113 @@
 				attributeValue = $(this).val();
 
 				// call updateMap function and pass dataLayer
-	     		updateMap(vacantLots)
+				updateMap(vacantLots)
 
 			});
+
+		}
+
+		// drawZoom
+
+		function drawZoom() {
+
+			// create a new Leaflet control object, and position it bottom left
+			var legend = L.control({
+				position: 'bottomleft'
+			});
+
+			// when the legend is added to the map
+			legend.onAdd = function () {
+
+				// create a new HTML <div> element and give it a class name of "legend"
+				var div = L.DomUtil.create('div', 'legend');
+
+				// Add a select drop down. The function is defined below and passes the value in the drop down.
+				div.innerHTML = `<h3>Zoom to:</h3>
+			<select id="cars" onchange="selectRegion(this.value)">
+				<option value="DP">Denby Park</option>
+				<option value="GT">Ghent</option>
+				<option value="BC">Broad Creek</option>
+				<option value="AA">Azalea Acres</option>
+				<option value="LM">Larchmont</option> 
+				<option value="EB">Estabrook</option>
+				<option value="GP">Granby Park</option>
+			</select>
+			`;
+				// return the populated div to be added to the map
+				return div;
+			};
+
+			// add the legend to the map
+			legend.addTo(map);
+		} //end drawLegend
+
+		// View how the map properties change
+		map.on("move", function () {
+			let x = map.getCenter()
+			let y = map.getZoom()
+			console.log(x, y)
+		})
+
+		// Define the regions and then fly to them
+		function selectRegion(option) {
+			var regions = {
+				DP: {
+					zoom: 16,
+					center: {
+						lat: 36.91693437431241,
+						lng: -76.26376390457153
+					}
+				},
+				GT: {
+					zoom: 15,
+					center: {
+						lat: 36.87578207075626,
+						lng: -76.28914868074888
+					}
+				},
+				BC: {
+					zoom: 15,
+					center: {
+						lat: 36.85965995567981,
+						lng: -76.263580953662
+					}
+				},
+				AA: {
+					zoom: 16,
+					center: {
+						lat: 36.88893955599716,
+						lng: -76.21695373248258
+					}
+				},
+				LM: {
+					zoom: 15,
+					center: {
+						lat: 36.906753836274014,
+						lng: -76.30458155877237
+					}
+				},
+				EB: {
+					zoom: 16.5,
+					center: {
+						lat: 36.877472702637405,
+						lng: -76.24912944120855
+					}
+				},
+				GP: {
+					zoom: 15,
+					center: {
+						lat: 36.83732703132909,
+						lng: -76.24972661818396
+					}
+				}
+			}
+
+			for (region in regions) {
+				if (region == option) {
+					map.flyTo(regions[region].center, regions[region].zoom)
+				}
+			}
 
 		}
 	</script>
