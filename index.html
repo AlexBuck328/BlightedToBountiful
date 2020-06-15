@@ -261,8 +261,6 @@
 	<!-- legend is outside of container-fluid and will be dynamically added to map -->
 	<div class="py-2 px-3 ml-3 mt-3 text-white" id="legend"></div>
 
-	<div class="py-2 px-3 ml-3 mt-3 text-white" id="legend"></div>
-
 	<!-- ui is outside of container-fluid and will be dynamically added to map -->
 	<div class="form-group mr-3 mt-3" id="dropdown-ui">
 
@@ -425,7 +423,7 @@
 			// update the legend with the current data attribute information
 			addLegend();
 
-		}
+		}  // end drawMap
 
 
 		function updateMap(vacantLots) {
@@ -455,7 +453,7 @@
 				<b>Land Value:</b> $${props.norfolk_landValue.toLocaleString()}<br>
 				<b>${labels[attributeValue]} (Lbs per SF):</b> ${totalYield[attributeValue]} lbs/SF<br>
 				<b>${labels[attributeValue]}:</b> ${(props[attributeValue]).toLocaleString()} lbs<br>
-				<iframe src="${props.norfolk_streetView}" width="relative" height="relative">
+				<iframe src="${props.norfolk_streetView}" width=300px height=200px>
 				</iframe>`
 
 				// bind a tooltip to layer with county specific info
@@ -463,14 +461,14 @@
 					// sticky property so tooltip follows nouse
 					sticky: true
 				});
+				
 			});
 
-
-			//update legend  ** BREAKS **
+			//update legend 
 			updateLegend(breaks)
 
 
-		}
+		}  // end updateMap
 
 
 		// get class breaks in data
@@ -498,7 +496,7 @@
 			// return array of arrays
 			return breaks;
 
-		}
+		}  // end getClassBreaks
 
 		// get color of county
 		function getColor(d, breaks) {
@@ -519,7 +517,8 @@
 			} else if (d <= breaks[4][1]) {
 				return '#253494'
 			}
-		} // end getColor
+		}  // end getColor
+
 
 		// add legend to the map
 		function addLegend() {
@@ -543,9 +542,10 @@
 			// add the empty legend div to the map
 			legendControl.addTo(map);
 
-		}
+		}  // end addLegend
 
-		function updateLegend(breaks) { // ** BREAKS **
+
+		function updateLegend(breaks) { 
 			// select the legend, add a title, begin an unordered list and assign to a variable
 			const legend = $('#legend').html(`<h5>Total ${labels[attributeValue]}</h5>`);
 
@@ -556,8 +556,6 @@
 			legend.append(yieldWeight)
 
 		} // end addLegend
-
-
 
 
 		function addUi(vacantLots) {
@@ -594,10 +592,9 @@
 
 			});
 
-		}
+		}  // end addUi
 
-		// drawZoom
-
+		
 		function drawZoom() {
 
 			// create a new Leaflet control object, and position it bottom left
@@ -637,6 +634,7 @@
 			let y = map.getZoom()
 			console.log(x, y)
 		})
+
 
 		// Define the regions and then fly to them
 		function selectRegion(option) {
@@ -698,7 +696,7 @@
 				}
 			}
 
-		}
+		}  // end selectRegion
 	</script>
 </body>
 
