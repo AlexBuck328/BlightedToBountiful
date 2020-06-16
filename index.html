@@ -45,18 +45,21 @@
 		}
 
 		.headrow {
-			background-color: rgba(190, 219, 196, .7);
+			background-color: rgba(153, 187, 199, .4);
+			/* rgba(190, 219, 196, .7); */
 			color: grey
 		}
 
 		.footrow {
-			background-color: rgba(190, 219, 196, 0.7);
+			background-color: rgba(153, 187, 199, .4);
+			/* rgba(190, 219, 196, 0.7); */
 			color: grey;
 			Font-Family: 'Poppins', Sans-Serif;
 		}
 
 		.about {
-			background-color: rgb(230, 240, 232, 1);
+			background-color: rgba(187, 212, 221, 0.3);
+			/* rgb(230, 240, 232, 1); */
 			color: grey
 		}
 
@@ -108,16 +111,8 @@
 			border-radius: 5px;
 			max-width: 250px;
 			font-family: 'Open Sans', sans-serif;
-			background-color: rgb(122, 122, 122); 
+			background-color: rgb(122, 122, 122);
 		}
-
-		/*.legend {
-			width: 20px;
-			height: 20px;
-			color: rgb(122, 122, 122);
-			float: left; 
-			margin: 0 10px 4px 0;
-		} */
 
 		.legend label {
 			font-size: 0.9rem;
@@ -135,9 +130,6 @@
 			color: white;
 			margin: 0 0 10px 0;
 		}
-
-
-
 
 		/* Small devices (landscape phones, 576px and up) */
 		@media (min-width: 576px) {}
@@ -160,7 +152,7 @@
 </head>
 
 <body>
-	<div class="container-fluid">
+	<div class="container-fluid h-100">
 		<header class="headrow row py-1">
 			<div class="col">
 				<h1>Blighted to Bountiful</h1>
@@ -168,13 +160,13 @@
 			</div>
 		</header>
 
-		<section class="row">
-			<div class="col-md-8 col-lg-9 col-xl-9 order-md-2 px-0">
+		<section class="row h-100">
+			<div class="col-md-8 col-lg-9 col-xl-9 order-md-2 px-0 h-100">
 				<div id="map"></div>
 			</div>
-			<aside id="about" class="about col-md-4 col-lg-3 col-xl-3 order-md-1 py-2 pl-3 pr-3 overflow-auto">
+			<aside id="about" class="about col-md-4 col-lg-3 col-xl-3 order-md-1 py-2 pl-3 pr-3 overflow-auto ">
 				<section>
-					<h3 class="py-2">The Project</h3>
+					<h3 class="py-2 text-center">The Project</h3>
 					<p>Norfolk is a vibrant city within Hampton Roads. It is home to the largest naval base in the world
 						as well as Old Dominion University. With a diverse mix of people, Norfolk is an eclectic region
 						that offers something for everyone. Despite its large population, there is a strong sense of
@@ -243,13 +235,14 @@
 					</p>
 
 
-					<p> <img src="images/young-salad.jpg" alt="plants" title="growing plants" alight="middle"></p>
+					<h3 class="py-2 text-center"><img src="images/young-salad.jpg" alt="plants" title="growing plants"
+							alight="middle"></h3>
 
 				</section>
 			</aside>
 		</section>
 
-		<footer class="footrow row py-1">
+	<footer class="footrow row py-1 text-left">
 			<div class="col">
 				<ul class="list-unstyled">
 					<li>Authored by <a target="_blank" href="https://alexbuck328.github.io/">Alexander Buck</a></li>
@@ -258,7 +251,7 @@
 					</li>
 				</ul>
 			</div>
-		</footer>
+		</footer> 
 	</div>
 
 	<!-- legend is outside of container-fluid and will be dynamically added to map -->
@@ -426,7 +419,7 @@
 			// update the legend with the current data attribute information
 			addLegend();
 
-		}  // end drawMap
+		} // end drawMap
 
 
 		function updateMap(vacantLots) {
@@ -464,14 +457,14 @@
 					// sticky property so tooltip follows nouse
 					sticky: true
 				});
-				
+
 			});
 
 			//update legend 
 			updateLegend(breaks)
 
 
-		}  // end updateMap
+		} // end updateMap
 
 
 		// get class breaks in data
@@ -499,7 +492,7 @@
 			// return array of arrays
 			return breaks;
 
-		}  // end getClassBreaks
+		} // end getClassBreaks
 
 		// get color of county
 		function getColor(d, breaks) {
@@ -511,16 +504,16 @@
 			if (d <= breaks[0][1]) {
 				return '#ffffcc';
 			} else if (d <= breaks[1][1]) {
-				return '#a1dab4';
+				return '#c2e699';
 			} else if (d <=
 				breaks[2][1]) {
-				return '#41b6c4';
+				return '#78c679';
 			} else if (d <= breaks[3][1]) {
-				return '#2c7fb8'
+				return '#31a354'
 			} else if (d <= breaks[4][1]) {
-				return '#253494'
+				return '#006837'
 			}
-		}  // end getColor
+		} // end getColor
 
 
 		// add legend to the map
@@ -545,10 +538,10 @@
 			// add the empty legend div to the map
 			legendControl.addTo(map);
 
-		}  // end addLegend
+		} // end addLegend
 
 
-		function updateLegend(breaks) { 
+		function updateLegend(breaks) {
 			// select the legend, add a title, begin an unordered list and assign to a variable
 			const legend = $('#legend').html(`<h5>Total ${labels[attributeValue]}</h5>`);
 
@@ -595,9 +588,9 @@
 
 			});
 
-		}  // end addUi
+		} // end addUi
 
-		
+
 		function drawZoom() {
 
 			// create a new Leaflet control object, and position it bottom left
@@ -699,7 +692,8 @@
 				}
 			}
 
-		}  // end selectRegion
+		} // end selectRegion
+
 	</script>
 </body>
 
